@@ -23,10 +23,10 @@ require('minuet').setup {
       api_key = 'TERM', -- dummy: any non-empty env var name; ollama needs no key
       name = 'Ollama (a40a)',
       end_point = 'http://127.0.0.1:11434/v1/completions',
-      -- 3b: ~340ms round-trip through the tunnel; 7b: smarter but ~870ms
-      model = 'qwen2.5-coder:3b',
+      -- 7b: better suggestions, ~600-900ms; 3b: ~340ms but noticeably dumber
+      model = 'qwen2.5-coder:7b',
       optional = {
-        max_tokens = 128,
+        max_tokens = 64, -- caps worst-case latency (~18ms/token on the 7b)
         stop = { '\n\n' },
       },
     },
