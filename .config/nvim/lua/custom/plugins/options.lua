@@ -26,3 +26,23 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show line diagnostics' })
 vim.keymap.set('n', 'gn', '<cmd>cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', 'gp', '<cmd>cprev<CR>', { desc = 'Previous quickfix item' })
+
+-- Comment leaders for filetypes the runtime doesn't cover (used by gc/gcc).
+-- The built-in commenting reads the buffer-local 'commentstring' option;
+-- when `gcc` complains about an empty commentstring, add an entry below.
+-- If the extension isn't even detected as a filetype (check with :set ft?),
+-- register it in the vim.filetype.add call first.
+vim.filetype.add {
+  extension = {
+    -- dl = 'souffle', -- .dl left alone for now: no one commentstring across datalog engines
+  },
+}
+local commentstrings = {
+  -- souffle = '// %s',
+}
+for ft, cs in pairs(commentstrings) do
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = ft,
+    callback = function() vim.bo.commentstring = cs end,
+  })
+end
