@@ -17,3 +17,7 @@ vim.pack.add { 'https://github.com/lervag/vimtex' }
 
 vim.g.vimtex_view_general_viewer = 'okular'
 vim.g.vimtex_view_general_options = '--noraise --unique file:@pdf#src:@line@tex'
+
+-- Only auto-open the quickfix list on errors; warnings are available
+-- on demand via <localleader>le (set to 0/2 to tweak further, :h g:vimtex_quickfix_mode)
+vim.g.vimtex_quickfix_open_on_warning = 0
