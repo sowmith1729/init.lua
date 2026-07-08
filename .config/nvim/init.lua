@@ -925,14 +925,16 @@ do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  -- NOTE(custom): added cpp, python, rust, javascript, typescript
+  -- NOTE(custom): added cpp, python, rust, javascript, typescript, latex, bibtex
   local parsers = {
     'bash',
+    'bibtex',
     'c',
     'cpp',
     'diff',
     'html',
     'javascript',
+    'latex',
     'lua',
     'luadoc',
     'markdown',
