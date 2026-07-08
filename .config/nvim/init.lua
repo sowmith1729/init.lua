@@ -364,20 +364,20 @@ do
   }
 
   -- Useful plugin to show you pending keybinds.
-  -- NOTE(custom): which-key disabled (not used in this config)
-  -- vim.pack.add { gh 'folke/which-key.nvim' }
-  -- require('which-key').setup {
-  --   -- Delay between pressing a key and opening which-key (milliseconds)
-  --   delay = 0,
-  --   icons = { mappings = vim.g.have_nerd_font },
-  --   -- Document existing key chains
-  --   spec = {
-  --     { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
-  --     { '<leader>t', group = '[T]oggle' },
-  --     { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
-  --     { 'gr', group = 'LSP Actions', mode = { 'n' } },
-  --   },
-  -- }
+  vim.pack.add { gh 'folke/which-key.nvim' }
+  require('which-key').setup {
+    -- Delay between pressing a key and opening which-key (milliseconds)
+    delay = 0,
+    icons = { mappings = vim.g.have_nerd_font },
+    -- Document existing key chains
+    spec = {
+      { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+      { '<leader>t', group = '[T]oggle' },
+      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
+      { '<leader>g', group = '[G]it' }, -- NOTE(custom): fugitive/diffview/context maps
+      { 'gr', group = 'LSP Actions', mode = { 'n' } },
+    },
+  }
 
   -- [[ Colorscheme ]]
   -- You can easily change to a different colorscheme.
@@ -904,7 +904,7 @@ do
     -- the rust implementation via `'prefer_rust_with_warning'`
     --
     -- See `:help blink-cmp-config-fuzzy` for more information
-    fuzzy = { implementation = 'lua' },
+    fuzzy = { implementation = 'prefer_rust_with_warning' }, -- NOTE(custom): use the faster rust matcher
 
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },
